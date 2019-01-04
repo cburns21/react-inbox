@@ -5,7 +5,7 @@ import '../App.css';
 class MessageList extends Component {
   render() {
     return (
-        <div>
+        <div clasName="messageList">
         <div className="row message read">
             <div className="col-xs-1">
                 <div className="row">
@@ -40,7 +40,7 @@ class MessageList extends Component {
                 </a>
             </div>
         </div>
-        
+
         <div>
             <Message></Message>
         </div>  
