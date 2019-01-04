@@ -24,12 +24,17 @@ class App extends Component {
     });
   }
 
+  messageRead = () => {
+    console.log('messageRead')
+  }
+
   render() {
     return (
       <div className="app">
         <Toolbar></Toolbar>
         <MessageList
-          messages={this.state.messages}>
+          messages={this.state.messages}
+          messageRead={this.messageRead}>
         </MessageList>
       </div>
     );

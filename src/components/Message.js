@@ -4,14 +4,14 @@ import '../App.css';
 let Message = (props) =>  {
     return (
         <div clasName="messageList">
-            <div className="row message read">
+            <div className="row message unread" onClick={() => props.messageRead(props.message.id)}>
                 <div className="col-xs-1">
                     <div className="row">
                         <div className="col-xs-2">
                             <input type="checkbox" />
                         </div>
                         <div className="col-xs-2">
-                            <i className={false ? "star fa fa-star-o" : "star fa fa-star"}></i>
+                            <i className= "star fa fa-star-o"></i>
                         </div>
                     </div>
                 </div>
