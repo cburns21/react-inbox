@@ -24,8 +24,33 @@ class App extends Component {
     });
   }
 
-  messageRead = () => {
-    console.log('messageRead')
+  messageRead = (id) => {
+    console.log('messageRead', id)
+    const updateMessages = this.state.messages.map(message => {
+      if (message.id === id) {
+        message.read = !message.read
+      }
+      return message
+    })
+
+
+    this.setState({
+      messages: updateMessages
+    })
+  }
+
+  messageStarred = (props) => {
+    const updateStar = this.state.messages.map(message => {
+      if (message.props === props) {
+        message.star = !message.star
+      }
+      return message 
+    })
+
+    this.setState({
+      messages: updateStar
+    })
+
   }
 
   render() {
@@ -34,7 +59,8 @@ class App extends Component {
         <Toolbar></Toolbar>
         <MessageList
           messages={this.state.messages}
-          messageRead={this.messageRead}>
+          messageRead={this.messageRead}
+          messageStarred={this.messageStarred}>
         </MessageList>
       </div>
     );
