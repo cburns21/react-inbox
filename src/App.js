@@ -12,20 +12,33 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
-    fetch('http://localhost:8082/api/messages')
-    .then(function(response){
-      return response.json()
+  async componentDidMount(){
+    let response = await fetch('http://localhost:8082/api/messages', {
+
     })
-    .then(myJson => {
-      this.setState({
-        messages: myJson
-      })
-    });
+    let myJson = await response.json()
+    this.setState({
+      messages: myJson
+    })
   }
 
-  messageRead = (id) => {
+  messageRead = async (id) => {
     console.log('messageRead', id)
+    let message = {
+      messageIds: [id],
+      command: "read",
+      "read": true
+    }
+
+    const result = await fetch('http://localhost:8082/api/messages', {
+      method: 'PATCH',
+      body: JSON.stringify(message),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+
     const updateMessages = this.state.messages.map(message => {
       if (message.id === id) {
         message.read = !message.read

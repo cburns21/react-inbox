@@ -3,12 +3,15 @@ import '../App.css';
 
 let Message = (props) =>  {
     return (
-        <div clasName="messageList">
+        <div className="messageList">
             <div className={props.message.read ? "row message read" : "row message unread" }onClick={() => props.messageRead(props.message.id)}>
                 <div className="col-xs-1">
                     <div className="row">
                         <div className="col-xs-2">
-                            <input type="checkbox" />
+                            <input type="checkbox"
+                            // onChange={() => this.props.markAsSelected(this.props.message.id)}
+                            // checked={(typeof this.props.message.selected !== "undefined") && this.props.message.selected === true ? 'checked' : ""}
+                             />
                         </div>
                         <div className="col-xs-2">
                             <i className= {props.message.star ? "star fa fa-star-o" : "star fa fa-star"}onClick={() => props.messageStarred(props.message)}></i>
