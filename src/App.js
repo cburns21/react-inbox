@@ -30,7 +30,7 @@ class App extends Component {
       "read": true
     }
 
-    const result = await fetch('http://localhost:8082/api/messages', {
+     await fetch('http://localhost:8082/api/messages', {
       method: 'PATCH',
       body: JSON.stringify(message),
       headers: {
@@ -52,9 +52,9 @@ class App extends Component {
     })
   }
 
-  messageStarred = (props) => {
+  messageStarred = (id) => {
     const updateStar = this.state.messages.map(message => {
-      if (message.props === props) {
+      if (message.id === id) {
         message.star = !message.star
       }
       return message 
@@ -66,6 +66,19 @@ class App extends Component {
 
   }
 
+  messageLabel = (id) => {
+    const updateLabel = this.state.messages.map(message => {
+      if (message.id === id) {
+        message.label = !message.label
+      }
+      return message
+    })
+
+    this.setState({
+      messages: updateLabel
+    })
+  }
+
   render() {
     return (
       <div className="app">
@@ -73,7 +86,8 @@ class App extends Component {
         <MessageList
           messages={this.state.messages}
           messageRead={this.messageRead}
-          messageStarred={this.messageStarred}>
+          messageStarred={this.messageStarred}
+          messageLabel={this.messageLabel}>
         </MessageList>
       </div>
     );
